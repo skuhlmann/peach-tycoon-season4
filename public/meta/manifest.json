@@ -1,0 +1,47 @@
+{
+  "theme_color": "#e46c1e",
+  "background_color": "#0e1418",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "/meta/icon512_maskable.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "/meta/icon512_rounded.png",
+      "type": "image/png"
+    },
+    {
+      "src": "/meta/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/meta/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/meta/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/meta/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "en-US",
+  "name": "Peach Tycoon",
+  "short_name": "Peach Tycoon",
+  "start_url": "https://peachtycoon.com/",
+  "scope": "https://peachtycoon.com/",
+  "description": "A seasonal NFT farming game where players can earn and/or sell boxes of real peaches."
+}

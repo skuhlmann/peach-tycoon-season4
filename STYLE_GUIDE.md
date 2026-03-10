@@ -8,15 +8,15 @@ A comprehensive style reference for building new apps that match the look, feel,
 
 ### Brand Colors
 
-| Token | Name | Hex |
-|---|---|---|
-| `brand-orange` | Primary / CTA | `#E46C1E` |
-| `brand-black` | Background | `#0E1418` |
-| `brand-gray` | Card Background | `#1F1F1F` |
-| `brand-white` | Text | `#FFFFFF` |
-| `brand-red` | Alerts / Status | `#F5253D` |
-| `brand-green` | Success / Secondary | `#419361` |
-| `brand-blue` | Info / Alternative | `#9EB4C7` |
+| Token                  | Name                    | Hex                       |
+| ---------------------- | ----------------------- | ------------------------- |
+| `brand-orange`         | Primary / CTA           | `#E46C1E`                 |
+| `brand-black`          | Background              | `#0E1418`                 |
+| `brand-gray`           | Card Background         | `#1F1F1F`                 |
+| `brand-white`          | Text                    | `#FFFFFF`                 |
+| `brand-red`            | Alerts / Status         | `#F5253D`                 |
+| `brand-green`          | Success / Secondary     | `#419361`                 |
+| `brand-blue`           | Info / Alternative      | `#9EB4C7`                 |
 | `brand-orange-overlay` | Semi-transparent Orange | `rgba(228, 108, 30, 0.3)` |
 
 ### Tailwind CSS Theme Configuration
@@ -54,26 +54,26 @@ export default config;
 
 ```css
 :root {
-  --background: 210 16% 8%;          /* #0E1418 */
-  --foreground: 0 0% 100%;           /* #FFFFFF */
-  --card: 0 0% 12%;                  /* #1F1F1F */
+  --background: 210 16% 8%; /* #0E1418 */
+  --foreground: 0 0% 100%; /* #FFFFFF */
+  --card: 0 0% 12%; /* #1F1F1F */
   --card-foreground: 0 0% 100%;
   --popover: 210 16% 8%;
   --popover-foreground: 0 0% 100%;
-  --primary: 24 76% 50%;             /* #E46C1E */
+  --primary: 24 76% 50%; /* #E46C1E */
   --primary-foreground: 0 0% 100%;
-  --secondary: 140 38% 37%;          /* #419361 */
+  --secondary: 140 38% 37%; /* #419361 */
   --secondary-foreground: 0 0% 100%;
   --muted: 0 0% 12%;
-  --muted-foreground: 210 20% 68%;   /* #9EB4C7 */
+  --muted-foreground: 210 20% 68%; /* #9EB4C7 */
   --accent: 24 76% 50%;
   --accent-foreground: 0 0% 100%;
-  --destructive: 350 90% 56%;        /* #F5253D */
+  --destructive: 350 90% 56%; /* #F5253D */
   --destructive-foreground: 0 0% 100%;
   --border: 0 0% 20%;
   --input: 0 0% 20%;
   --ring: 24 76% 50%;
-  --radius: 1.25rem;                 /* 20px card radius */
+  --radius: 1.25rem; /* 20px card radius */
 }
 ```
 
@@ -83,12 +83,12 @@ export default config;
 
 ### Font Families
 
-| Role | Font | Source |
-|---|---|---|
-| **Body** | Work Sans | Google Fonts |
-| **Headings / Display** | Helsinki | Custom web font (WOFF/WOFF2) |
-| **Decorative / Subheadings** | Auster | Adobe Typekit (`rao1ahi`) |
-| **Serif Display** | Alda | Adobe Typekit (`rao1ahi`) |
+| Role                         | Font      | Source                       |
+| ---------------------------- | --------- | ---------------------------- |
+| **Body**                     | Work Sans | Google Fonts                 |
+| **Headings / Display**       | Helsinki  | Custom web font (WOFF/WOFF2) |
+| **Decorative / Subheadings** | Auster    | Adobe Typekit (`rao1ahi`)    |
+| **Serif Display**            | Alda      | Adobe Typekit (`rao1ahi`)    |
 
 ### Font Setup (`app/layout.tsx`)
 
@@ -108,8 +108,9 @@ const workSans = Work_Sans({
 ```css
 @font-face {
   font-family: "Helsinki";
-  src: url("/fonts/helsinki-webfont.woff2") format("woff2"),
-       url("/fonts/helsinki-webfont.woff") format("woff");
+  src:
+    url("/fonts/helsinki-webfont.woff2") format("woff2"),
+    url("/fonts/helsinki-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -132,14 +133,14 @@ fontFamily: {
 
 ### Type Scale
 
-| Usage | Class | Size |
-|---|---|---|
-| Hero heading (mobile) | `text-[56px]` | 56px |
-| Hero heading (desktop) | `xl:text-[80px]` | 80px |
-| Display / Proof-of-peach | `text-[50px]` | 50px |
-| Body default | `text-lg` | 18px |
-| Large body / button | `text-2xl` | 24px |
-| Small labels | `text-xs` | 12px |
+| Usage                    | Class            | Size |
+| ------------------------ | ---------------- | ---- |
+| Hero heading (mobile)    | `text-[56px]`    | 56px |
+| Hero heading (desktop)   | `xl:text-[80px]` | 80px |
+| Display / Proof-of-peach | `text-[50px]`    | 50px |
+| Body default             | `text-lg`        | 18px |
+| Large body / button      | `text-2xl`       | 24px |
+| Small labels             | `text-xs`        | 12px |
 
 ### Font Styles
 
@@ -191,6 +192,7 @@ Buttons use a **pill outline** style as the primary pattern.
 ```
 
 **Button sizes:**
+
 - Standard: `h-[60px] w-[220px]`
 - Modal / Form: `h-[60px] w-[260px]`
 - Large CTA: `h-[72px] w-[320px]`
@@ -202,16 +204,19 @@ Buttons use a **pill outline** style as the primary pattern.
 ### Cards
 
 ```tsx
-<div className="
+<div
+  className="
   bg-brand-gray rounded-[20px]
   p-[26px_29px]
   w-[320px]
-">
+"
+>
   {/* Card content */}
 </div>
 ```
 
 Card variants:
+
 - **Standard**: `p-[26px_29px]`
 - **Tree card**: `p-[26px_14px_26px_29px]`
 - **Mint card**: `p-[29px_36px]`
@@ -220,18 +225,21 @@ Card variants:
 ### Badges / Status Labels
 
 ```tsx
-<span className="
+<span
+  className="
   inline-block px-5
-  h-[34px] leading-[1.75]
+  h-[34px] leading-[2.5]
   bg-brand-red text-black
   font-display font-bold uppercase text-sm
   rounded-full
-">
+"
+>
   • PEACH SEASON CLOSED •
 </span>
 ```
 
 Color meanings:
+
 - Red `bg-brand-red`: Closed / Alert
 - Green `bg-brand-green`: Active / Open
 - Orange `bg-brand-orange`: Highlight
@@ -257,16 +265,20 @@ Color meanings:
 
 ```tsx
 <Dialog>
-  <DialogOverlay className="
+  <DialogOverlay
+    className="
     bg-gunmetal/80
     backdrop-blur-[10px]
     hue-rotate-90
-  " />
-  <DialogContent className="
+  "
+  />
+  <DialogContent
+    className="
     bg-[#0f1418] text-white
     rounded-[20px]
     flex flex-col items-center gap-4
-  ">
+  "
+  >
     <DialogHeader>
       <DialogTitle className="text-brand-orange font-display text-2xl" />
     </DialogHeader>
@@ -275,6 +287,7 @@ Color meanings:
 ```
 
 Modal header color by context:
+
 - Primary: `text-brand-orange`
 - Success / Farm: `text-brand-green`
 - Info: `text-brand-blue`
@@ -282,11 +295,13 @@ Modal header color by context:
 ### Spinners / Loading
 
 ```tsx
-<Loader2 className="
+<Loader2
+  className="
   h-12 w-12 animate-spin
   text-brand-green
   stroke-[8px]
-" />
+"
+/>
 ```
 
 ---
@@ -306,62 +321,68 @@ Footer (min-h-[200px], bg-brand-orange, text-brand-black)
 ### NavBar
 
 ```tsx
-<nav className="
+<nav
+  className="
   fixed top-0 w-full z-10
   bg-brand-black
   py-8 px-3 md:px-10
   mb-8
-" />
+"
+/>
 ```
 
 ### Footer
 
 ```tsx
-<footer className="
+<footer
+  className="
   min-h-[200px]
   bg-brand-orange text-brand-black
   p-[60px]
-" />
+"
+/>
 ```
 
 ### Section Layout
 
 ```tsx
-<section className="
+<section
+  className="
   mt-0 md:mt-[160px]
   px-[10vw]
   flex flex-col md:flex-row
   justify-start items-start
   gap-8
-" />
+"
+/>
 ```
 
 ### Spacing Scale
 
-| Scale | Value | Tailwind |
-|---|---|---|
-| XS | 0.5rem / 8px | `gap-2` |
-| SM | 1rem / 16px | `gap-4` |
-| MD | 1.5rem / 24px | `gap-6` |
-| LG | 2rem / 32px | `gap-8` |
-| XL | 2.5rem / 40px | `gap-10` |
-| 2XL | 3rem / 48px | `gap-12` |
+| Scale | Value         | Tailwind |
+| ----- | ------------- | -------- |
+| XS    | 0.5rem / 8px  | `gap-2`  |
+| SM    | 1rem / 16px   | `gap-4`  |
+| MD    | 1.5rem / 24px | `gap-6`  |
+| LG    | 2rem / 32px   | `gap-8`  |
+| XL    | 2.5rem / 40px | `gap-10` |
+| 2XL   | 3rem / 48px   | `gap-12` |
 
 ### Responsive Widths
 
-| Element | Mobile | Desktop |
-|---|---|---|
-| Cards | `w-[320px]` | `w-[320px]` |
+| Element      | Mobile      | Desktop     |
+| ------------ | ----------- | ----------- |
+| Cards        | `w-[320px]` | `w-[320px]` |
 | Card (wider) | `w-[293px]` | `w-[426px]` |
-| Hero image | `w-full` | `w-[40vw]` |
+| Hero image   | `w-full`    | `w-[40vw]`  |
 
 ### Z-Index Hierarchy
 
-| Element | Z-Index |
-|---|---|
-| Navigation | `z-10` (`z-index: 9`) |
-| Buttons (positioned) | `z-[2]` |
-| Mobile menu overlay | `z-[12]` |
+| Element              | Z-Index               |
+| -------------------- | --------------------- |
+| Navigation           | `z-10` (`z-index: 9`) |
+| Buttons (positioned) | `z-[2]`               |
+| Mobile menu overlay  | `z-[12]`              |
 
 ---
 
@@ -383,14 +404,15 @@ Footer (min-h-[200px], bg-brand-orange, text-brand-black)
 ```
 
 Tailwind equivalents:
+
 ```tsx
-className="transition-transform hover:-translate-y-2 focus:translate-y-0"
+className = "transition-transform hover:-translate-y-2 focus:translate-y-0";
 ```
 
 ### Modal Backdrop
 
 ```tsx
-className="backdrop-blur-[10px] hue-rotate-90"
+className = "backdrop-blur-[10px] hue-rotate-90";
 ```
 
 ### General Transitions
@@ -404,13 +426,13 @@ className="backdrop-blur-[10px] hue-rotate-90"
 
 ### Logo Assets
 
-| Asset | Usage | Dimensions |
-|---|---|---|
-| Peach Avatar | Favicon, auth, cards | 56px desktop / 36px mobile |
-| Peach Wordmark | Nav desktop | 97px wide |
-| Tycoon Wordmark | Nav desktop | 210px wide |
-| Mobile Logo | Nav mobile | Compact |
-| Footer Logo | Footer | Standard |
+| Asset           | Usage                | Dimensions                 |
+| --------------- | -------------------- | -------------------------- |
+| Peach Avatar    | Favicon, auth, cards | 56px desktop / 36px mobile |
+| Peach Wordmark  | Nav desktop          | 97px wide                  |
+| Tycoon Wordmark | Nav desktop          | 210px wide                 |
+| Mobile Logo     | Nav mobile           | Compact                    |
+| Footer Logo     | Footer               | Standard                   |
 
 ### Logo Arrangement
 
@@ -481,9 +503,10 @@ Accent:      #E46C1E (orange — used for CTAs, links, headings)
 ```
 
 Global body style:
+
 ```css
 body {
-  background-color: #0E1418;
+  background-color: #0e1418;
   color: #ffffff;
   font-family: "Work Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -497,30 +520,36 @@ body {
 ## 9. shadcn/ui Component Customization Notes
 
 When installing shadcn/ui (`npx shadcn@latest init`), select:
+
 - Style: **Default**
 - Base color: **Neutral** (then override with CSS vars above)
 - CSS variables: **Yes**
 
 Key overrides to apply after init:
+
 - `--radius`: Set to `1.25rem` (20px) for card radius, buttons use `9999px` inline
 - `--primary`: Map to brand orange `24 76% 50%`
 - `--background`: Map to brand black `210 16% 8%`
 - All shadcn components inherit these via CSS variables — minimal per-component overrides needed
 
 Button component variant additions:
+
 ```tsx
 // components/ui/button.tsx additions
 const buttonVariants = cva("...", {
   variants: {
     variant: {
       // Add these custom variants
-      "brand-orange": "border border-brand-orange text-brand-orange bg-transparent hover:-translate-y-2 ...",
-      "brand-green":  "border border-brand-green text-brand-green bg-transparent hover:-translate-y-2 ...",
-      "brand-blue":   "border border-brand-blue text-brand-blue bg-transparent hover:-translate-y-2 ...",
+      "brand-orange":
+        "border border-brand-orange text-brand-orange bg-transparent hover:-translate-y-2 ...",
+      "brand-green":
+        "border border-brand-green text-brand-green bg-transparent hover:-translate-y-2 ...",
+      "brand-blue":
+        "border border-brand-blue text-brand-blue bg-transparent hover:-translate-y-2 ...",
     },
     size: {
       // Add custom sizes
-      pill:   "h-[60px] w-[220px] rounded-[200px]",
+      pill: "h-[60px] w-[220px] rounded-[200px]",
       "pill-lg": "h-[72px] w-[320px] rounded-[200px]",
       "pill-md": "h-[60px] w-[260px] rounded-[200px]",
     },

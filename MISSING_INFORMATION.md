@@ -92,6 +92,15 @@ _Note: Shopify integration will be stubbed initially — `/api/order` returns mo
 | Testimonials from past holders  | ⏳ Needed | Text quotes with attribution (handle/ENS optional) |
 | How many gallery items?         | ⏳ TBD    | Layout adapts to quantity                          |
 
+### Homepage & General Copy
+
+| Item                            | Status    | Notes                                  |
+| ------------------------------- | --------- | -------------------------------------- |
+| Hero tagline                    | ⏳ Needed | Short punchy line under "Peach Tycoon" |
+| Hero subheading / descriptor    | ⏳ Needed | 1–2 sentence description               |
+| How It Works section intro      | ⏳ Needed | Brief framing text                     |
+| About + Market placeholder copy | ⏳ Needed | Section body text                      |
+
 ### About Page Content
 
 | Item                               | Status    | Notes                                             |
@@ -120,15 +129,6 @@ All 12 FAQ items need final answers written:
 10. Which blockchain is this on and why?
 11. What are the fees?
 12. Previous seasons — what happened to those tokens?
-
-### Homepage & General Copy
-
-| Item                            | Status    | Notes                                  |
-| ------------------------------- | --------- | -------------------------------------- |
-| Hero tagline                    | ⏳ Needed | Short punchy line under "Peach Tycoon" |
-| Hero subheading / descriptor    | ⏳ Needed | 1–2 sentence description               |
-| How It Works section intro      | ⏳ Needed | Brief framing text                     |
-| About + Market placeholder copy | ⏳ Needed | Section body text                      |
 
 ---
 
