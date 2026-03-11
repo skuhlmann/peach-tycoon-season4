@@ -173,7 +173,7 @@ export default function AboutPage() {
           The Project
         </p>
         <h2 className="font-heading text-[40px] text-brand-white mb-6">
-          Peach Drop NFT — Seasons 1–4
+          Peach Drop Token — Seasons 1–4
         </h2>
 
         <div className="font-sans text-brand-white/70 text-lg leading-relaxed space-y-4 max-w-2xl">

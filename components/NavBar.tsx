@@ -29,7 +29,7 @@ export default function NavBar() {
   const walletAddress = user?.wallet?.address;
 
   return (
-    <nav className="fixed top-0 w-full z-[9] bg-brand-black py-5 px-4 md:px-10">
+    <nav className="fixed top-0 w-full z-50 bg-brand-black py-5 px-4 md:px-10">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">

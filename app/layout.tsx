@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Peach Tycoon — Season Four",
   description:
-    "Buy a Peach Box NFT on Base and redeem it for a real box of Colorado peaches from Palisade, CO.",
+    "Buy a Peach Box Token on Base and redeem it for a real box of Colorado peaches from Palisade, CO.",
   manifest: "/meta/manifest.json",
   icons: {
     icon: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Peach Tycoon — Season Four",
     description:
-      "Buy a Peach Box NFT on Base and redeem it for a real box of Colorado peaches.",
+      "Buy a Peach Box Token on Base and redeem it for a real box of Colorado peaches.",
     siteName: "Peach Tycoon",
     type: "website",
     images: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Peach Tycoon — Season Four",
     description:
-      "Buy a Peach Box NFT on Base and redeem it for a real box of Colorado peaches.",
+      "Buy a Peach Box Token on Base and redeem it for a real box of Colorado peaches.",
     images: ["/meta/twitter.png"],
   },
 };

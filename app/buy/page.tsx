@@ -144,8 +144,8 @@ export default function BuyPage() {
           You got the Peach!
         </h1>
         <p className="font-sans text-lg text-brand-white max-w-md">
-          Your Peach Box NFT has been minted. Head to Your Peaches to redeem it
-          for a real box of Palisade, CO peaches.
+          Your Peach Box Token has been minted. Head to Your Peaches to redeem
+          it for a real box of Palisade, CO peaches.
         </p>
         <Link href="/peaches">
           <Button variant="brand-green" size="lg">
@@ -164,7 +164,7 @@ export default function BuyPage() {
           Get Your Peaches!
         </h1>
         <p className="font-sans text-lg text-brand-white/70 max-w-xl">
-          Buy a Peach Box NFT on Base. Redeem it for a real box of Colorado
+          Buy a Peach Box Token on Base. Redeem it for a real box of Colorado
           peaches from Palisade, CO — or trade it on the market.
         </p>
       </div>
@@ -331,15 +331,21 @@ export default function BuyPage() {
                       (paymentMethod === "erc20" && needsApproval)
                     }
                   >
-                    {isMintPending || isMintConfirming ? "BUYING..." : "BUY NOW"}
+                    {isMintPending || isMintConfirming
+                      ? "BUYING..."
+                      : "BUY NOW"}
                   </Button>
 
                   {/* Error */}
                   {(approveError || mintError) && (
                     <p className="text-brand-red text-sm font-sans">
-                      {(approveError ?? mintError)!.message.includes("user rejected")
+                      {(approveError ?? mintError)!.message.includes(
+                        "user rejected",
+                      )
                         ? "Transaction cancelled."
-                        : (approveError ?? mintError)!.message.includes("incorrect payment")
+                        : (approveError ?? mintError)!.message.includes(
+                              "incorrect payment",
+                            )
                           ? "Incorrect payment amount. Please try again."
                           : "Transaction failed. Please try again."}
                     </p>

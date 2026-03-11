@@ -214,7 +214,7 @@ function NFTCard({
               size="xs"
               onClick={() => setGiftOpen(true)}
             >
-              GIFT NFT
+              GIFT TOKEN
             </Button>
           )}
         </div>
@@ -261,7 +261,7 @@ export default function PeachesPage() {
       const data = await getNFTsForOwner(walletAddress);
       setNfts(data);
     } catch {
-      setError("Could not load your NFTs. Please try again.");
+      setError("Could not load your Tokens. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -305,7 +305,7 @@ export default function PeachesPage() {
         />
         <h1 className="font-heading text-3xl text-brand-white">Your Peaches</h1>
         <p className="font-sans text-lg text-brand-white/70 max-w-md">
-          Connect your wallet to see your Peach Box NFTs.
+          Connect your wallet to see your Peach Box Tokens.
         </p>
         <Button variant="brand-orange" size="lg" onClick={() => login()}>
           SIGN UP / SIGN IN
@@ -327,7 +327,7 @@ export default function PeachesPage() {
             • REDEMPTION WINDOW OPEN •
           </span>
           <p className="text-brand-white/60 font-sans text-sm mt-2">
-            Redeem your Peach Box NFTs now to order real peaches!
+            Redeem your Peach Box Tokens now to order real peaches!
           </p>
         </div>
       )}
@@ -338,7 +338,7 @@ export default function PeachesPage() {
           </span>
           <p className="text-brand-white/60 font-sans text-sm mt-2">
             The redemption window has ended. You can still sell or gift your
-            NFTs.
+            Tokens.
           </p>
         </div>
       )}
@@ -365,7 +365,7 @@ export default function PeachesPage() {
       {!loading && !error && nfts.length === 0 && (
         <div className="flex flex-col gap-6 items-start">
           <p className="font-sans text-brand-white/70 text-lg">
-            You don&apos;t have any Peach Box NFTs yet.
+            You don&apos;t have any Peach Box Tokens yet.
           </p>
           <Link href="/buy">
             <Button variant="brand-orange" size="lg">

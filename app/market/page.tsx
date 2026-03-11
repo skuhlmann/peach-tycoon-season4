@@ -13,7 +13,7 @@ export default function MarketPage() {
           Peach Market
         </h1>
         <p className="font-sans text-xl text-brand-white/70 max-w-xl">
-          Buy and sell unredeemed Peach Box NFTs peer-to-peer. Set your price,
+          Buy and sell unredeemed Peach Box Tokens peer-to-peer. Set your price,
           list your box, and trade freely — all on-chain.
         </p>
       </div>
@@ -26,7 +26,7 @@ export default function MarketPage() {
           <ul className="font-sans text-brand-white/70 text-base space-y-3">
             <li className="flex gap-3">
               <span className="text-brand-orange font-bold shrink-0">→</span>
-              List your unredeemed Peach Box NFT at any price
+              List your unredeemed Peach Box Token at any price
             </li>
             <li className="flex gap-3">
               <span className="text-brand-orange font-bold shrink-0">→</span>
@@ -38,7 +38,7 @@ export default function MarketPage() {
             </li>
             <li className="flex gap-3">
               <span className="text-brand-orange font-bold shrink-0">→</span>
-              Only unredeemed NFTs can be listed
+              Only unredeemed Tokens can be listed
             </li>
           </ul>
         </div>
@@ -49,7 +49,7 @@ export default function MarketPage() {
             In the Meantime
           </p>
           <p className="font-sans text-brand-white/70 text-base mb-4">
-            You can trade Peach Box NFTs on OpenSea right now while the native
+            You can trade Peach Box Tokens on OpenSea right now while the native
             market is being built.
           </p>
           {SOCIAL_LINKS.opensea ? (

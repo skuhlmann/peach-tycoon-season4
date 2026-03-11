@@ -22,11 +22,18 @@ interface Props {
   onSuccess: () => void;
 }
 
-export default function GiftModal({ tokenId, ownerAddress, open, onClose, onSuccess }: Props) {
+export default function GiftModal({
+  tokenId,
+  ownerAddress,
+  open,
+  onClose,
+  onSuccess,
+}: Props) {
   const [recipientAddress, setRecipientAddress] = useState("");
   const { nft: nftAddress } = getContracts();
   const { writeContract, data: txHash, isPending, error } = useWriteContract();
-  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash: txHash });
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransactionReceipt({ hash: txHash });
 
   const isValidAddress = isAddress(recipientAddress);
 
@@ -36,7 +43,11 @@ export default function GiftModal({ tokenId, ownerAddress, open, onClose, onSucc
       address: nftAddress,
       abi: nftAbi,
       functionName: "safeTransferFrom",
-      args: [ownerAddress as `0x${string}`, recipientAddress as `0x${string}`, tokenId],
+      args: [
+        ownerAddress as `0x${string}`,
+        recipientAddress as `0x${string}`,
+        tokenId,
+      ],
     });
   };
 
@@ -53,7 +64,7 @@ export default function GiftModal({ tokenId, ownerAddress, open, onClose, onSucc
             Gift Peach #{tokenId.toString()}
           </DialogTitle>
           <DialogDescription className="text-brand-white/70 font-sans text-center text-base pt-2">
-            Transfer this Peach Box NFT to another wallet. The recipient will
+            Transfer this Peach Box Token to another wallet. The recipient will
             be able to redeem it for real peaches.
           </DialogDescription>
         </DialogHeader>

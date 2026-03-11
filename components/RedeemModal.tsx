@@ -19,10 +19,16 @@ interface Props {
   onSuccess: () => void;
 }
 
-export default function RedeemModal({ tokenId, open, onClose, onSuccess }: Props) {
+export default function RedeemModal({
+  tokenId,
+  open,
+  onClose,
+  onSuccess,
+}: Props) {
   const { nft: nftAddress } = getContracts();
   const { writeContract, data: txHash, isPending, error } = useWriteContract();
-  const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({ hash: txHash });
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransactionReceipt({ hash: txHash });
 
   const handleRedeem = () => {
     writeContract({
@@ -46,7 +52,7 @@ export default function RedeemModal({ tokenId, open, onClose, onSuccess }: Props
             Redeem Peach #{tokenId.toString()}
           </DialogTitle>
           <DialogDescription className="text-brand-white/70 font-sans text-center text-base pt-2">
-            Redeeming this NFT marks it as used on-chain. You&apos;ll then be
+            Redeeming this Token marks it as used on-chain. You&apos;ll then be
             able to place your order for a real box of Palisade, CO peaches.
             This action cannot be undone.
           </DialogDescription>

@@ -79,7 +79,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="font-heading text-md hover:opacity-60 transition-opacity"
           >
-            Block Epxlorer ↗
+            Block Explorer ↗
           </a>
         </div>
       </div>
