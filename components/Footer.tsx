@@ -77,9 +77,9 @@ export default function Footer() {
             href={contractUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-heading text-md hover:opacity-60 transition-opacity"
+            className="font-heading text-sm hover:opacity-60 transition-opacity"
           >
-            Block Explorer ↗
+            Token Contract ↗
           </a>
         </div>
       </div>
