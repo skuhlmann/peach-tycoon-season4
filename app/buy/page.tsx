@@ -17,6 +17,7 @@ import SaleStateBadge from "@/components/SaleStateBadge";
 import CountdownTimer from "@/components/CountdownTimer";
 import {
   useMintPrice,
+  useBaseMintPrice,
   useTotalSupply,
   useMaxSupply,
 } from "@/lib/hooks/useContractReads";
@@ -51,6 +52,8 @@ export default function BuyPage() {
   const { nft: nftAddress, paymentERC20, paymentDecimals } = getContracts();
 
   const { ethPrice, erc20Price } = useMintPrice(walletAddress);
+  const { ethPrice: baseEthPrice, erc20Price: baseErc20Price } =
+    useBaseMintPrice();
   const { data: totalSupply } = useTotalSupply();
   const { data: maxSupply } = useMaxSupply();
   const { data: allowance, refetch: refetchAllowance } =
@@ -85,6 +88,19 @@ export default function BuyPage() {
 
   const ethPriceRaw = ethPrice.data as bigint | undefined;
   const erc20PriceRaw = erc20Price.data as bigint | undefined;
+  const baseEthPriceRaw = baseEthPrice.data as bigint | undefined;
+  const baseErc20PriceRaw = baseErc20Price.data as bigint | undefined;
+
+  // Show base price when not authenticated, discounted price when authenticated
+  const displayEthPriceRaw = authenticated ? ethPriceRaw : baseEthPriceRaw;
+  const displayErc20PriceRaw = authenticated
+    ? erc20PriceRaw
+    : baseErc20PriceRaw;
+
+  const remaining =
+    totalSupply != null && maxSupply != null
+      ? (maxSupply as bigint) - (totalSupply as bigint)
+      : null;
 
   const isDiscounted =
     paymentMethod === "eth"
@@ -169,7 +185,7 @@ export default function BuyPage() {
         </p>
       </div>
 
-      <div className="flex flex-col md:flex-row md:items-center gap-10">
+      <div className="flex flex-col lg:flex-row lg:items-start flex-wrap gap-10">
         <div className="flex flex-col gap-6">
           {/* Upcoming state — show countdown */}
           {SALE_STATE === "upcoming" && SALE_START && (
@@ -202,12 +218,28 @@ export default function BuyPage() {
           {/* Active mint card */}
           {SALE_STATE === "ongoing" && !isSoldOut && (
             <div className="bg-brand-gray rounded-[20px] p-[29px_36px] max-w-md flex flex-col gap-6">
-              {/* Supply indicator */}
-              {totalSupply != null && maxSupply != null && (
-                <p className="text-brand-blue text-sm font-display font-bold">
-                  {totalSupply.toString()} / {maxSupply.toString()} minted
-                </p>
+              {/* Scarcity Meter */}
+              {maxSupply != null && (
+                <div>
+                  <p className="text-brand-blue text-xs uppercase font-display font-bold mb-1">
+                    Scarcity Meter
+                  </p>
+                  <p className="font-heading text-2xl text-brand-white leading-none">
+                    {remaining != null
+                      ? `${remaining.toString()} Boxes Remaining`
+                      : `${(maxSupply as bigint).toString()} Boxes Remaining`}
+                  </p>
+                </div>
               )}
+
+              {/* Crate image */}
+              <Image
+                src="/images/crate.png"
+                alt="Peach crate"
+                width={320}
+                height={220}
+                className="w-full rounded-xl object-contain"
+              />
 
               {/* Discount badge */}
               {isDiscounted && (
@@ -223,9 +255,9 @@ export default function BuyPage() {
                 </p>
                 <p className="font-heading text-[40px] text-brand-white leading-none">
                   {paymentMethod === "eth"
-                    ? formatPaymentAmount(ethPriceRaw, 18, paymentMethod)
+                    ? formatPaymentAmount(displayEthPriceRaw, 18, paymentMethod)
                     : formatPaymentAmount(
-                        erc20PriceRaw,
+                        displayErc20PriceRaw,
                         paymentDecimals,
                         paymentMethod,
                       )}
@@ -356,15 +388,49 @@ export default function BuyPage() {
           )}
         </div>
 
-        {/* Crate image */}
-        <div className="flex-1 flex justify-center md:justify-end">
+        {/* Peach photo */}
+        <div className="flex justify-center md:justify-end">
           <Image
-            src="/images/crate.png"
-            alt="Peach crate"
+            src="/images/proof-of-peach/peach-flat.jpg"
+            alt="Fresh Palisade peaches"
             width={600}
-            height={600}
-            className="w-full max-w-[500px] md:max-w-none md:w-auto md:max-h-[520px] object-contain"
+            height={800}
+            className="w-full max-w-[500px] md:max-w-none md:w-auto md:max-h-[600px] object-cover rounded-2xl"
           />
+        </div>
+
+        {/* Marketing copy */}
+        <div className="flex-1 flex flex-col gap-4 min-w-[200px] pt-2">
+          <h2 className="font-heading text-[32px] text-brand-white leading-tight">
+            A Peach Worth Waiting For
+          </h2>
+          <p className="font-sans text-brand-white/70">
+            Palisade peaches ripen slowly under intense Colorado sun.
+          </p>
+          <p className="font-sans text-brand-white/70 font-bold">
+            By harvest time the fruit is:
+          </p>
+          <ul className="flex flex-col gap-2">
+            {["intensely aromatic", "deeply sweet", "bursting with juice"].map(
+              (trait) => (
+                <li
+                  key={trait}
+                  className="flex gap-3 font-sans text-brand-white/70"
+                >
+                  <span className="text-brand-orange font-bold shrink-0">
+                    •
+                  </span>
+                  {trait}
+                </li>
+              ),
+            )}
+          </ul>
+          <p className="font-sans text-brand-white italic">
+            One bite and the juice runs down your arm.
+          </p>
+          <p className="font-sans text-brand-white/70">
+            This is the peach people wait all year for.
+          </p>
         </div>
       </div>
     </div>

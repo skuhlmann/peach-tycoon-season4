@@ -54,6 +54,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="theme-color" content="#e46c1e" />
+        <link rel="agent-commerce" href="/.well-known/agent-commerce" />
       </head>
       <body className="antialiased">
         <Providers>

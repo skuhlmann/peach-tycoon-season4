@@ -1,6 +1,6 @@
 "use client";
 
-import { useReadContract, useReadContracts } from "wagmi";
+import { useReadContract } from "wagmi";
 import { nftAbi, getContracts } from "@/lib/contracts";
 
 export function useMintPrice(address: `0x${string}` | undefined) {
@@ -80,4 +80,26 @@ export function useMaxSupply() {
     abi: nftAbi,
     functionName: "maxSupply",
   });
+}
+
+const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000" as `0x${string}`;
+
+export function useBaseMintPrice() {
+  const { nft } = getContracts();
+
+  const ethPrice = useReadContract({
+    address: nft,
+    abi: nftAbi,
+    functionName: "getMintPrice",
+    args: [ZERO_ADDRESS, false],
+  });
+
+  const erc20Price = useReadContract({
+    address: nft,
+    abi: nftAbi,
+    functionName: "getMintPrice",
+    args: [ZERO_ADDRESS, true],
+  });
+
+  return { ethPrice, erc20Price };
 }

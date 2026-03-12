@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: "/peaches", label: "Your Peaches" },
   { href: "/market", label: "Market" },
   { href: "/about", label: "About" },
+  { href: "/agents", label: "For Agents" },
 ];
 
 export default function Footer() {

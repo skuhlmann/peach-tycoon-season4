@@ -12,9 +12,13 @@ export default function MarketPage() {
         <h1 className="font-heading text-[56px] md:text-[80px] text-brand-white mb-6">
           Peach Market
         </h1>
+        <p className="font-sans text-xl text-brand-orange font-bold max-w-xl">
+          Trade Peach Reservations
+        </p>
+
         <p className="font-sans text-xl text-brand-white/70 max-w-xl">
-          Buy and sell unredeemed Peach Box Tokens peer-to-peer. Set your price,
-          list your box, and trade freely — all on-chain.
+          If you can't receive your peaches, sell your reservation to someone
+          else.
         </p>
       </div>
 
@@ -49,7 +53,7 @@ export default function MarketPage() {
             In the Meantime
           </p>
           <p className="font-sans text-brand-white/70 text-base mb-4">
-            You can trade Peach Box Tokens on OpenSea right now while the native
+            You can trade Peach Box Tokens on Rarible right now while the native
             market is being built.
           </p>
           {SOCIAL_LINKS.opensea ? (
@@ -64,7 +68,7 @@ export default function MarketPage() {
             </a>
           ) : (
             <p className="text-brand-white/30 text-sm font-sans italic">
-              OpenSea collection link available after mainnet launch.
+              Rarible collection link available after mainnet launch.
             </p>
           )}
         </div>

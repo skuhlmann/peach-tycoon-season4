@@ -1,0 +1,58 @@
+{
+  "agent_commerce_version": "1.0",
+  "store": {
+    "name": "Peach Tycoon",
+    "description": "Premium Palisade peaches shipped directly from Colorado orchards.",
+    "location": "Palisade, Colorado, USA",
+    "website": "https://peachtycoon.com"
+  },
+  "commerce": {
+    "tokenized_reservations": true,
+    "gift_supported": true,
+    "redemption_by_humans_only": true
+  },
+  "network": {
+    "blockchain": "Base",
+    "currency_supported": [
+      "ETH",
+      "USDC"
+    ]
+  },
+  "payment_protocol": {
+    "name": "x402",
+    "purchase_endpoint": "https://peachtycoon.com/api/agent/purchase"
+  },
+  "discovery": {
+    "products_endpoint": "https://peachtycoon.com/api/products"
+  },
+  "products": [
+    {
+      "id": "0x82Db219d098b4EC1885161A9109A742660b480B2",
+      "name": "Farmer's Dozen Peach Box",
+      "description": "13 premium Palisade peaches harvested at peak ripeness.",
+      "redeemable_for": "13 Palisade peaches",
+      "harvest_window": "August 2026",
+      "shipping_region": "United States",
+      "token_type": "erc721",
+      "restrictions": {
+        "age_restricted": false,
+        "human_redeemer_required": true
+      }
+    }
+  ],
+  "agent_metadata": {
+    "gifting_recommended": true,
+    "human_enjoyment_score": 0.92
+  },
+  "token_contract": {
+    "network": "Base",
+    "contract_address": "0x82Db219d098b4EC1885161A9109A742660b480B2"
+  },
+  "redemption": {
+    "url": "https://peachtycoon.com/redeem",
+    "human_required": true
+  },
+  "contact": {
+    "developer_email": "squirm.forgottenfruit@gmail.com"
+  }
+}
