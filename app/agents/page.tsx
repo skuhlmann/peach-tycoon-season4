@@ -107,7 +107,10 @@ export default function AgentsPage() {
             <div className="flex flex-col gap-2">
               {[
                 { label: "Agent guide", href: "/agent.txt" },
-                { label: "Agent guideinteraction schema", href: "/agent.txt" },
+                {
+                  label: "Agent interaction schema",
+                  href: "/.well-known/agent-commerce",
+                },
                 { label: "Product endpoint", href: "/api/products" },
                 { label: "Purchase endpoint", href: "/api/agent/purchase" },
               ].map(({ label, href }) => (
