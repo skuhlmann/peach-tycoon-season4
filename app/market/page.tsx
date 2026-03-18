@@ -17,8 +17,8 @@ export default function MarketPage() {
         </p>
 
         <p className="font-sans text-xl text-brand-white/70 max-w-xl">
-          If you can't receive your peaches, sell your reservation to someone
-          else.
+          If you can&apos;t receive your peaches, sell your reservation to
+          someone else.
         </p>
       </div>
 
@@ -56,14 +56,14 @@ export default function MarketPage() {
             You can trade Peach Box Tokens on Rarible right now while the native
             market is being built.
           </p>
-          {SOCIAL_LINKS.opensea ? (
+          {SOCIAL_LINKS.rarible ? (
             <a
-              href={SOCIAL_LINKS.opensea}
+              href={SOCIAL_LINKS.rarible}
               target="_blank"
               rel="noopener noreferrer"
             >
               <Button variant="brand-blue" size="default">
-                VIEW ON OPENSEA
+                VIEW ON RARIBLE
               </Button>
             </a>
           ) : (
