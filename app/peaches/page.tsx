@@ -18,7 +18,6 @@ import {
   useRedemptionWindow,
   useTokenState,
 } from "@/lib/hooks/useContractReads";
-import { nftAbi, getContracts } from "@/lib/contracts";
 import { getNFTsForOwner, type AlchemyNFT } from "@/lib/alchemy";
 import { Download } from "lucide-react";
 
@@ -86,9 +85,9 @@ function NFTCard({
   const [detailsOpen, setDetailsOpen] = useState(false);
 
   return (
-    <div className="bg-brand-gray rounded-[20px] p-[32px_36px] w-full max-w-[520px] flex flex-col gap-5">
+    <div className="bg-brand-gray rounded-[20px] p-[32px_36px] w-full max-w-[420px] flex flex-col gap-5">
       {/* NFT Image */}
-      <div className="relative w-full aspect-square rounded-[12px] overflow-hidden bg-brand-black">
+      <div className="relative w-full aspect-[2/3] rounded-[12px] overflow-hidden bg-brand-black">
         <Image
           src={imageUrl}
           alt={nft.title}
@@ -343,16 +342,6 @@ export default function PeachesPage() {
         </div>
       )}
 
-      {/* Email prompt */}
-      {hasEmail === false && !emailDismissed && walletAddress && (
-        <div className="mb-8">
-          <EmailPrompt
-            walletAddress={walletAddress}
-            onDismiss={() => setEmailDismissed(true)}
-          />
-        </div>
-      )}
-
       {/* Loading */}
       {loading && (
         <div className="text-brand-blue font-sans">Loading your peaches...</div>
@@ -387,6 +376,16 @@ export default function PeachesPage() {
               onRefresh={fetchNFTs}
             />
           ))}
+        </div>
+      )}
+
+      {/* Email prompt */}
+      {hasEmail === false && !emailDismissed && walletAddress && (
+        <div className="my-10">
+          <EmailPrompt
+            walletAddress={walletAddress}
+            onDismiss={() => setEmailDismissed(true)}
+          />
         </div>
       )}
     </div>
