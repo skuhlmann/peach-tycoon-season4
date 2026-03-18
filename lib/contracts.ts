@@ -45,7 +45,7 @@ export const CONTRACTS = {
   },
   base: {
     nft: (process.env.NEXT_PUBLIC_NFT_CONTRACT_MAINNET ||
-      "0x0000000000000000000000000000000000000000") as `0x${string}`,
+      "0x625185ccDD81B3c0C3E015C7FC616A9Bf75e2F2f") as `0x${string}`,
     discountERC20:
       "0x6D83138a5fF65E0F32076602d3210fa3ea955E8E" as `0x${string}`,
     paymentERC20: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" as `0x${string}`,

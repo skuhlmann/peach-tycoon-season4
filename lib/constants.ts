@@ -30,7 +30,8 @@ export const SOCIAL_LINKS = {
   twitter: "https://twitter.com/PeachDropNFT",
   farcaster: "", // e.g. "https://warpcast.com/peachtycoon"
   telegram: "https://t.me/PeachDropNFT",
-  opensea: "", // fill after mainnet deployment
+  rarible:
+    "https://rarible.com/base/collections/0x625185ccDD81B3c0C3E015C7FC616A9Bf75e2F2f", // fill after mainnet deployment
 };
 
 export const TARGET_NETWORK = process.env.NEXT_PUBLIC_NETWORK as string;
