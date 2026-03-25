@@ -3,7 +3,6 @@ import { nftAbi } from "@/lib/contracts";
 import {
   getBasePublicClient,
   NFT_ADDRESS_BASE,
-  PAYMENT_ERC20_ADDRESS,
   PAYMENT_ERC20_DECIMALS,
 } from "@/lib/serverWallet";
 
@@ -22,8 +21,12 @@ export async function GET() {
     | `0x${string}`
     | undefined;
 
+  console.log("ownerAddress", ownerAddress);
+
+  console.log("NFT_ADDRESS_BASE", NFT_ADDRESS_BASE);
+
   try {
-    const [totalSupply, maxSupply, priceEthWei, priceErc20Units] =
+    const [totalSupply, maxSupply, priceErc20Units] =
       await Promise.all([
         client.readContract({
           address: NFT_ADDRESS_BASE,
@@ -41,32 +44,33 @@ export async function GET() {
           functionName: "getMintPrice",
           // Use owner address for price lookup so discount logic applies;
           // fall back to zero address if not yet configured
-          args: [(ownerAddress ?? ZERO_ADDRESS) as `0x${string}`, false],
-        }),
-        client.readContract({
-          address: NFT_ADDRESS_BASE,
-          abi: nftAbi,
-          functionName: "getMintPrice",
           args: [(ownerAddress ?? ZERO_ADDRESS) as `0x${string}`, true],
         }),
       ]);
 
     const available = Number(maxSupply) - Number(totalSupply);
 
-    return NextResponse.json([
-      {
-        id: "0x82Db219d098b4EC1885161A9109A742660b480B2",
-        name: "Farmer's Dozen Peach Box",
-        description: "13 premium Palisade peaches shipped from Colorado",
-        price_eth: Number(priceEthWei) / 1e18,
-        price_usdc: Number(priceErc20Units) / 10 ** PAYMENT_ERC20_DECIMALS,
-        payment_token_address: PAYMENT_ERC20_ADDRESS,
-        available,
-        redeemable: true,
-        harvest_window: "August 2026",
-        token_contract: NFT_ADDRESS_BASE,
-      },
-    ]);
+    return NextResponse.json({
+      products: [
+        {
+          id: "peach-box-2026",
+          name: "Farmer's Dozen Peach Box",
+          description:
+            "13 premium Palisade peaches harvested at peak ripeness.",
+          price: {
+            usd: Number(priceErc20Units) / 10 ** PAYMENT_ERC20_DECIMALS,
+            currencies: ["ETH", "USDC"],
+          },
+          inventory_remaining: available,
+          harvest_window: "2026-08",
+          shipping_region: "US",
+          redeemable: true,
+          tradable: true,
+          giftable: true,
+          purchase_endpoint: "https://peachtycoon.com/api/agent/purchase",
+        },
+      ],
+    });
   } catch (err) {
     console.error("[GET /api/products]", err);
     return NextResponse.json(

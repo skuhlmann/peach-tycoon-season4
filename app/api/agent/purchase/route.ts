@@ -11,7 +11,7 @@ import {
 import { parsePaymentProof, verifyPayment } from "@/lib/paymentVerifier";
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
-const PRODUCT_ID = "0x82Db219d098b4EC1885161A9109A742660b480B2";
+const PRODUCT_ID = "peach-box-2026";
 
 // In-memory idempotency store.
 // MVP only: lost on server restart, not safe across multiple serverless instances.
@@ -19,7 +19,13 @@ const PRODUCT_ID = "0x82Db219d098b4EC1885161A9109A742660b480B2";
 // Upgrade to Redis/KV for production.
 const idempotencyStore = new Map<
   string,
-  { status: string; token_id?: number | null; tx_hash?: string }
+  {
+    status: string;
+    token_id?: string | null;
+    contract_address?: string;
+    tx_hash?: string;
+    mint_tx_hash?: string;
+  }
 >();
 
 async function getPricesAndSupply() {
@@ -61,6 +67,76 @@ async function getPricesAndSupply() {
   };
 }
 
+export async function GET() {
+  return NextResponse.json({
+    endpoint: "/api/agent/purchase",
+    method: "POST",
+    description:
+      "Purchase a Peach Token NFT on behalf of a buyer. Implements the x402 payment protocol: send the request without an Authorization header to receive payment instructions, then retry with proof of payment.",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "x402 <txHash>  // required on retry after payment",
+      "Idempotency-Key": "<uuid>      // optional, prevents duplicate mints",
+    },
+    request_schema: {
+      product_id: "string (required) — must be 'peach-box-2026'",
+      buyer_wallet: "address (required) — receives the token if gift_to is omitted",
+      gift_to: "address (optional) — mint destination when gifting",
+    },
+    example_request: {
+      product_id: "peach-box-2026",
+      buyer_wallet: "0xabc...",
+      gift_to: "0xdef...",
+    },
+    flow: [
+      {
+        step: 1,
+        description: "POST without Authorization header",
+        response_status: 402,
+        example_response: {
+          payment_options: [
+            {
+              protocol: "x402",
+              network: "base",
+              asset: "ETH",
+              amount: "0.03",
+              pay_to: "0xOwner...",
+            },
+            {
+              protocol: "x402",
+              network: "base",
+              asset: "USDC",
+              amount: "95.00",
+              token_address: "0xUSDC...",
+              pay_to: "0xOwner...",
+            },
+          ],
+          product_id: "peach-box-2026",
+        },
+      },
+      {
+        step: 2,
+        description: "Pay on Base, then retry with Authorization: x402 <txHash>",
+        response_status: 200,
+        example_response: {
+          status: "success",
+          token_id: "104",
+          contract_address: NFT_ADDRESS_BASE,
+          tx_hash: "0x...",
+        },
+      },
+    ],
+    failure_responses: {
+      400: "Invalid JSON, unknown product_id, missing/invalid buyer_wallet or gift_to",
+      402: "Payment required — see payment_options in response body",
+      410: "Sold out",
+      422: "Payment verification failed",
+      500: "Mint transaction failed or server misconfiguration",
+      503: "Contract not yet deployed",
+    },
+  });
+}
+
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 204,
@@ -82,14 +158,14 @@ export async function POST(req: NextRequest) {
   }
 
   // Parse and validate request body
-  let body: { product_id?: string; recipient_wallet?: string };
+  let body: { product_id?: string; buyer_wallet?: string; gift_to?: string };
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  const { product_id, recipient_wallet } = body;
+  const { product_id, buyer_wallet, gift_to } = body;
 
   if (product_id !== PRODUCT_ID) {
     return NextResponse.json(
@@ -97,12 +173,20 @@ export async function POST(req: NextRequest) {
       { status: 400 },
     );
   }
-  if (!recipient_wallet || !isAddress(recipient_wallet)) {
+  if (!buyer_wallet || !isAddress(buyer_wallet)) {
     return NextResponse.json(
-      { error: "Invalid or missing recipient_wallet" },
+      { error: "Invalid or missing buyer_wallet" },
       { status: 400 },
     );
   }
+  if (gift_to !== undefined && !isAddress(gift_to)) {
+    return NextResponse.json(
+      { error: "Invalid gift_to address" },
+      { status: 400 },
+    );
+  }
+
+  const mintRecipient = (gift_to ?? buyer_wallet) as `0x${string}`;
 
   const ownerAddress = process.env.OWNER_WALLET_ADDRESS;
   if (!ownerAddress || !isAddress(ownerAddress)) {
@@ -217,7 +301,7 @@ export async function POST(req: NextRequest) {
       address: NFT_ADDRESS_BASE,
       abi: nftAbi,
       functionName: "mintTo",
-      args: [[recipient_wallet as `0x${string}`]],
+      args: [[mintRecipient]],
       account,
     });
   } catch (err) {
@@ -264,7 +348,12 @@ export async function POST(req: NextRequest) {
     // tokenId parsing failed — still return success with null tokenId
   }
 
-  const result = { status: "success", token_id: tokenId, tx_hash: mintTxHash };
+  const result = {
+    status: "success",
+    token_id: tokenId !== null ? String(tokenId) : null,
+    contract_address: NFT_ADDRESS_BASE,
+    tx_hash: mintTxHash,
+  };
   if (idempotencyKey) idempotencyStore.set(idempotencyKey, result);
 
   return NextResponse.json(result);
