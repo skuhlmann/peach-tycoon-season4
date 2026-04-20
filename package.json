@@ -25,6 +25,9 @@
     "viem": "^2.47.1",
     "wagmi": "^3.5.0"
   },
+  "overrides": {
+    "ox": "0.14.18"
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
