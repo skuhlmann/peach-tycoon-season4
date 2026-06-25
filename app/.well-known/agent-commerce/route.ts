@@ -6,6 +6,7 @@ import {
   PAYMENT_ERC20_ADDRESS,
   PAYMENT_ERC20_DECIMALS,
 } from "@/lib/serverWallet";
+import { SALE_STATE } from "@/lib/constants";
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
@@ -61,10 +62,10 @@ export async function GET() {
         }),
       ]);
       inventoryTotal = Number(maxSupply);
-      inventoryRemaining = Math.max(
-        0,
-        Number(maxSupply) - Number(totalSupply),
-      );
+      inventoryRemaining =
+        SALE_STATE === "closed"
+          ? 0
+          : Math.max(0, Number(maxSupply) - Number(totalSupply));
       priceEthWei = ethPrice as bigint;
       priceErc20Units = erc20Price as bigint;
     } catch {
@@ -97,7 +98,9 @@ export async function GET() {
         id: "peach-box-2026",
         name: "Farmer's Dozen Peach Box",
         description:
-          "13 premium Palisade peaches harvested at peak ripeness and shipped directly from the orchard.",
+          SALE_STATE === "closed"
+            ? "Season 4 is sold out. Come back next season for the next Palisade peach drop."
+            : "13 premium Palisade peaches harvested at peak ripeness and shipped directly from the orchard.",
         harvest_window: "2026-08",
         shipping_region: "US",
         contract_address: NFT_ADDRESS_BASE,
@@ -113,9 +116,12 @@ export async function GET() {
         inventory: {
           inventory_total: inventoryTotal,
           inventory_remaining: inventoryRemaining,
-          availability_status: contractReachable
-            ? availabilityStatus(inventoryRemaining)
-            : "unknown",
+          availability_status:
+            SALE_STATE === "closed"
+              ? "sold_out"
+              : contractReachable
+                ? availabilityStatus(inventoryRemaining)
+                : "unknown",
           seasonal_scarcity:
             contractReachable && inventoryRemaining > 0
               ? seasonalScarcity(inventoryRemaining, inventoryTotal)
@@ -136,8 +142,14 @@ export async function GET() {
 
     endpoints: {
       products: "https://peachtycoon.com/api/products",
-      purchase: "https://peachtycoon.com/api/agent/purchase",
-      purchase_schema: "https://peachtycoon.com/api/agent/purchase",
+      purchase:
+        SALE_STATE === "closed"
+          ? null
+          : "https://peachtycoon.com/api/agent/purchase",
+      purchase_schema:
+        SALE_STATE === "closed"
+          ? null
+          : "https://peachtycoon.com/api/agent/purchase",
       docs: "https://peachtycoon.com/agents",
       agent_txt: "https://peachtycoon.com/agent.txt",
     },

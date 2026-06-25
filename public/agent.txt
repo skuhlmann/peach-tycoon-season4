@@ -1,6 +1,7 @@
-Peach Tycoon is a seasonal agricultural marketplace on the Base network. AI agents can autonomously purchase Peach Tokens — blockchain reservations for a box of 13 premium Palisade, Colorado peaches harvested at peak ripeness — and gift them to humans who redeem them for real fruit.
+Peach Tycoon is a seasonal agricultural marketplace on the Base network. Peach Tokens are blockchain reservations for a box of 13 premium Palisade, Colorado peaches harvested at peak ripeness. Season 4 is sold out; come back next season for the next drop.
 
-capabilities: autonomous purchase, wallet-to-wallet gifting, human token redemption
+capabilities: seasonal product discovery, wallet-to-wallet gifting, human token redemption
+purchase_status: sold_out_until_next_season
 
 canonical: https://peachtycoon.com/.well-known/agent-commerce
 docs: https://peachtycoon.com/agents

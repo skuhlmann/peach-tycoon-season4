@@ -1,32 +1,30 @@
 import Image from "next/image";
-import Link from "next/link";
 import { MoveRight, CheckCircle2, MapPin, Minus } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const HOW_IT_WORKS = [
   {
     step: "1",
-    title: "Reserve a Peach Box",
+    title: "Seasonal Sale Opens",
     description:
-      "Purchase a Peach Token representing a harvest box. No crypto experience needed — pay with a debit card.",
+      "Each drop releases a limited number of Peach Tokens, each representing one harvest box.",
   },
   {
     step: "2",
-    title: "Farmers Harvest at Peak Ripeness",
+    title: "Peaches Ripen in Palisade",
     description:
       "Peaches are picked when sugar levels peak. We coordinate directly with Palisade farms each season.",
   },
   {
     step: "3",
-    title: "Box Ships From Palisade",
+    title: "Token Holders Redeem",
     description:
-      "Your box is packed and shipped directly from the orchard to your door during the harvest window.",
+      "During the redemption window, Peach Tokens are exchanged for real harvest boxes.",
   },
   {
     step: "4",
-    title: "Or Trade Your Reservation",
+    title: "Boxes Ship From the Orchard",
     description:
-      "Can't receive the peaches? Sell your reservation on the market. Tokens are transferable.",
+      "Boxes are packed and shipped directly from Palisade during the harvest window.",
   },
 ];
 
@@ -61,28 +59,9 @@ const WHY_TOKENS = [
     description: "Tokens let us plan exactly how many boxes to prepare.",
   },
   {
-    icon: "🔄",
-    title: "Allow reservations to be traded",
-    description: "Can't make it work? Sell your spot to someone who can.",
-  },
-];
-
-// Placeholder testimonials — replace with real content when provided
-const PROOF_OF_PEACH_PLACEHOLDERS = [
-  {
-    season: "Season 1",
-    quote: "[Testimonial from a Season 1 holder]",
-    handle: "@holder.eth",
-  },
-  {
-    season: "Season 2",
-    quote: "[Testimonial from a Season 2 holder]",
-    handle: "@holder2.eth",
-  },
-  {
-    season: "Season 3",
-    quote: "[Testimonial from a Season 3 holder]",
-    handle: "@holder3.eth",
+    icon: "✓",
+    title: "Track redemption clearly",
+    description: "Each token shows whether its harvest box has been redeemed.",
   },
 ];
 
@@ -106,7 +85,7 @@ export default function HomePage() {
         {/* Left — Text */}
         <div className="flex flex-col gap-6 max-w-lg flex-none z-10">
           <span className="inline-flex items-center gap-2 px-5 h-[34px] bg-brand-green text-black font-display font-bold uppercase text-sm rounded-full w-fit">
-            • SEASON FOUR •
+            • SEASON 4 SOLD OUT •
           </span>
 
           <h1 className="font-heading text-[52px] md:text-[72px] lg:text-[80px] text-brand-white leading-[1] tracking-tight">
@@ -122,24 +101,16 @@ export default function HomePage() {
             directly from the orchard.
           </p>
           <p className="font-sans text-lg text-brand-white/70 max-w-md leading-relaxed">
-            Reserve a{" "}
+            Season 4{" "}
             <span className="text-brand-white font-semibold">
-              Farmer&apos;s Dozen (13 peaches)
+              Farmer&apos;s Dozen boxes
             </span>{" "}
-            before the harvest sells out.
+            are sold out. Come back next season for the next harvest drop.
           </p>
 
-          <div className="flex gap-4 flex-wrap mt-2">
-            <Link href="/buy">
-              <Button
-                variant="brand-orange"
-                size="lg"
-                className="text-xl px-8 py-6"
-              >
-                Reserve Your Peach Box
-              </Button>
-            </Link>
-          </div>
+          <span className="inline-flex items-center justify-center px-6 py-4 bg-brand-orange text-brand-black font-display font-bold uppercase text-base rounded-full w-fit mt-2">
+            Come Back Next Season
+          </span>
         </div>
 
         {/* Right — Visuals */}
@@ -192,9 +163,9 @@ export default function HomePage() {
             How It Works
           </p>
           <h2 className="font-heading text-[46px] md:text-[58px] text-brand-white leading-tight">
-            Reserve Now.
+            Seasonal Tokens.
             <br />
-            Harvest Later.
+            Real Harvests.
           </h2>
         </div>
 
@@ -218,8 +189,8 @@ export default function HomePage() {
         </div>
 
         <p className="mt-8 font-sans text-brand-blue text-sm text-center italic">
-          Reservations are issued as Peach Tokens that can be redeemed or
-          traded.
+          Season 4 is sold out. The next drop will open with a new seasonal
+          allocation.
         </p>
       </section>
 
@@ -446,21 +417,15 @@ export default function HomePage() {
               </div>
 
               <p className="font-sans text-brand-blue text-sm">
-                Ships during the{" "}
+                Ships during each season&apos;s{" "}
                 <span className="text-brand-white font-semibold">
-                  peak harvest window in August.
+                  peak harvest window.
                 </span>
               </p>
 
-              <Link href="/buy" className="mt-2">
-                <Button
-                  variant="brand-orange"
-                  size="lg"
-                  className="text-base px-8 py-6"
-                >
-                  Reserve Your Box
-                </Button>
-              </Link>
+              <span className="inline-flex items-center justify-center px-6 py-4 bg-brand-orange/15 border border-brand-orange/30 text-brand-orange font-display font-bold uppercase text-sm rounded-full w-fit mt-2">
+                Season 4 Sold Out
+              </span>
             </div>
           </div>
         </div>
@@ -510,7 +475,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Final CTA — Reserve Summer ── */}
+      {/* ── Final CTA — Sold Out ── */}
       <section className="relative px-[8vw] py-32 flex flex-col items-center gap-8 text-center overflow-hidden">
         {/* Background image with warm overlay */}
         <div className="absolute inset-0 -z-10">
@@ -525,28 +490,19 @@ export default function HomePage() {
         </div>
 
         <span className="inline-flex items-center gap-2 px-5 h-[34px] bg-brand-orange/20 border border-brand-orange/30 text-brand-orange font-display font-bold uppercase text-sm rounded-full">
-          Season Four is Live
+          Season 4 Is Sold Out
         </span>
 
         <h2 className="font-heading text-[52px] md:text-[72px] lg:text-[88px] text-brand-white leading-[1] tracking-tight max-w-3xl">
-          Reserve Summer.
+          Come Back Next Season.
         </h2>
 
         <p className="font-sans text-brand-white/60 text-lg md:text-xl max-w-md leading-relaxed">
-          Peach season only lasts a few weeks.
+          Peach season only lasts a few weeks, and this year&apos;s allocation
+          has been claimed.
           <br />
-          Secure your box before the harvest sells out.
+          We&apos;ll reopen for the next Palisade harvest.
         </p>
-
-        <Link href="/buy">
-          <Button
-            variant="brand-orange"
-            size="lg"
-            className="text-base px-10 py-7 text-lg"
-          >
-            Reserve Your Peach Box
-          </Button>
-        </Link>
       </section>
     </div>
   );
