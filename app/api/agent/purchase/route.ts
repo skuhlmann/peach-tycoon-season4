@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAddress, parseEventLogs, formatUnits } from "viem";
 import { nftAbi } from "@/lib/contracts";
+import { SALE_STATE } from "@/lib/constants";
 import {
   getBasePublicClient,
   getOwnerWalletClient,
@@ -68,6 +69,19 @@ async function getPricesAndSupply() {
 }
 
 export async function GET() {
+  if (SALE_STATE === "closed") {
+    return NextResponse.json({
+      endpoint: "/api/agent/purchase",
+      method: "POST",
+      status: "sold_out",
+      description:
+        "Peach Tycoon Season 4 is sold out. The purchase endpoint is disabled until the next seasonal drop.",
+      failure_responses: {
+        410: "Sold out",
+      },
+    });
+  }
+
   return NextResponse.json({
     endpoint: "/api/agent/purchase",
     method: "POST",
@@ -150,6 +164,17 @@ export async function OPTIONS() {
 }
 
 export async function POST(req: NextRequest) {
+  if (SALE_STATE === "closed") {
+    return NextResponse.json(
+      {
+        error: "Sold out",
+        message:
+          "Peach Tycoon Season 4 is sold out. Come back next season for the next drop.",
+      },
+      { status: 410 },
+    );
+  }
+
   if (NFT_ADDRESS_BASE === ZERO_ADDRESS) {
     return NextResponse.json(
       { error: "Contract not yet deployed on mainnet" },

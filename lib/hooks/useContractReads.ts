@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useReadContract } from "wagmi";
 import { nftAbi, getContracts } from "@/lib/contracts";
 
@@ -28,6 +29,15 @@ export function useMintPrice(address: `0x${string}` | undefined) {
 
 export function useRedemptionWindow() {
   const { nft } = getContracts();
+  const [now, setNow] = useState(0);
+
+  useEffect(() => {
+    const updateNow = () => setNow(Math.floor(Date.now() / 1000));
+    updateNow();
+
+    const interval = window.setInterval(updateNow, 60_000);
+    return () => window.clearInterval(interval);
+  }, []);
 
   const { data: startTimestamp } = useReadContract({
     address: nft,
@@ -41,7 +51,6 @@ export function useRedemptionWindow() {
     functionName: "redemptionEnd",
   });
 
-  const now = Math.floor(Date.now() / 1000);
   const start = startTimestamp ? Number(startTimestamp) : 0;
   const end = endTimestamp ? Number(endTimestamp) : 0;
 

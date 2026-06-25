@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import {
   Dialog,

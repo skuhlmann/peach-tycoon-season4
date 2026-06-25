@@ -7,55 +7,42 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-// All answers marked [PLACEHOLDER] need final copy from the team
 const FAQ_ITEMS = [
   {
-    q: "What is a Peach Box NFT?",
-    a: "[PLACEHOLDER] A Peach Box NFT is a token on the Base blockchain that represents the right to receive a real, physical box of Colorado peaches from Palisade, CO. Each NFT is unique, tradeable, and redeemable during the harvest season redemption window.",
+    q: "What is Peach Tycoon?",
+    a: "Peach Tycoon is a seasonal project that connects Peach Tokens to real boxes of Palisade, Colorado peaches. Each season has a limited harvest allocation.",
   },
   {
-    q: "How do I buy one?",
-    a: "[PLACEHOLDER] Head to the Buy page, connect your wallet (or sign up with email), and mint a Peach Box NFT for 0.024 ETH or 50 USDC. If you hold the discount ERC20 token, you'll automatically receive 10% off.",
+    q: "Is Season 4 available?",
+    a: "No. Season 4 is sold out. This year's allocation has been claimed, and the sale will reopen with a future seasonal drop.",
   },
   {
-    q: "What wallet do I need? What if I don't have one?",
-    a: "[PLACEHOLDER] You can use any browser wallet like MetaMask or Coinbase Wallet. If you don't have a wallet, just sign up with your email — we'll create a secure embedded wallet for you automatically using Privy.",
+    q: "What is a Peach Token?",
+    a: "A Peach Token is a blockchain reservation for one seasonal harvest box. During the redemption window, the token connects the digital reservation to a real box of peaches.",
   },
   {
-    q: "How do I pay?",
-    a: "[PLACEHOLDER] You can pay with ETH (Base) or USDC. If you don't have crypto yet, tap the 'Fund Wallet' button after connecting to buy ETH directly with a debit card through Coinbase.",
+    q: "How does the seasonal flow work?",
+    a: "A limited sale opens for the season, Peach Tokens are claimed, Palisade farmers harvest at peak ripeness, token holders redeem during the redemption window, and boxes ship from the orchard.",
   },
   {
-    q: "What is the redemption window and how does it work?",
-    a: "[PLACEHOLDER] The redemption window is the time period when you can exchange your NFT for real peaches. It typically aligns with the Colorado peach harvest (late July – September). During this window, you'll see a 'Redeem' button on your NFT. After redeeming on-chain, you'll be sent to complete your shipping address and order.",
+    q: "Why do you use tokens?",
+    a: "Tokens make the harvest allocation visible and verifiable. They help the project coordinate a limited seasonal crop before peaches are picked, packed, and shipped.",
   },
   {
-    q: "Can I get peaches shipped internationally?",
-    a: "[PLACEHOLDER] Yes! International orders are accepted. Fresh peaches ship domestically; international orders are handled by our fulfillment team. Please note that customs fees and import duties are the responsibility of the recipient.",
+    q: "Why Palisade peaches?",
+    a: "Palisade's sunny days, cool nights, high elevation, and mineral-rich soil create peaches with deep sweetness, strong aroma, and the kind of juice people wait all year for.",
   },
   {
-    q: "Can I sell my NFT?",
-    a: "[PLACEHOLDER] Yes — unredeemed Peach Box NFTs can be bought and sold on the Peach Market (coming soon) or on OpenSea. Only unredeemed NFTs can be listed; once redeemed, the NFT is marked on-chain.",
+    q: "When is the next season?",
+    a: "The next drop will be announced when the next harvest allocation is ready. Come back next season for the next Palisade peach release.",
   },
   {
-    q: "Can I gift my NFT to someone?",
-    a: "[PLACEHOLDER] Two ways to gift: (1) Transfer the NFT directly to another wallet from Your Peaches page using the 'Gift NFT' button. (2) When redeeming and placing your order, simply enter a different shipping address — the peaches will ship to that person instead. This is a great option if you want to send peaches as a gift without transferring the NFT.",
+    q: "Which blockchain is this on?",
+    a: "Season 4 uses Base, an Ethereum Layer 2 built for fast, low-cost transactions.",
   },
   {
-    q: "What happens if I miss the redemption window?",
-    a: "[PLACEHOLDER] If you don't redeem your NFT during the window, you'll miss that season's peaches. However, you can still sell or gift the NFT. Future season details TBD.",
-  },
-  {
-    q: "Which blockchain is this on and why?",
-    a: "[PLACEHOLDER] Peach Tycoon Season 4 is on Base — an Ethereum Layer 2 built by Coinbase. Base offers fast, cheap transactions and great onboarding tools, making it easy for anyone to participate even without prior crypto experience.",
-  },
-  {
-    q: "What are the fees?",
-    a: "[PLACEHOLDER] The mint price is 0.024 ETH or 50 USDC. Gas fees on Base are typically very low (a few cents per transaction). There are no additional platform fees for minting or redeeming.",
-  },
-  {
-    q: "What happened to previous season tokens?",
-    a: "[PLACEHOLDER] Seasons 1–3 tokens were separate contracts. Each season is a fresh collection. Previous season tokens cannot be redeemed for Season 4 peaches. [Additional details about past seasons to be provided.]",
+    q: "What happened to previous seasons?",
+    a: "Each season is tied to its own harvest allocation. Season 4 is its own drop, and future seasons will have their own details when they open.",
   },
 ];
 
@@ -96,9 +83,8 @@ export default function FAQPage() {
           Shipping Info
         </p>
         <p className="font-sans text-brand-white/70 text-base">
-          {/* PLACEHOLDER — replace with final shipping availability for Season 4 */}
-          [Season 4 shipping details — domestic and international availability,
-          timing, any restrictions. To be provided.]
+          Peach boxes ship during the seasonal Palisade harvest window after
+          tokens are redeemed. Season 4 is sold out.
         </p>
       </div>
     </div>

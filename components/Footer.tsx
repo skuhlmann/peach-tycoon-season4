@@ -6,9 +6,6 @@ import { Bird, MessageCircle } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/buy", label: "Buy" },
-  { href: "/peaches", label: "Your Peaches" },
-  { href: "/market", label: "Market" },
   { href: "/about", label: "About" },
   { href: "/agents", label: "For Agents" },
 ];

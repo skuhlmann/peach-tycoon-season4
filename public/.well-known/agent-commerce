@@ -2,7 +2,7 @@
   "agent_commerce_version": "1.0",
   "store": {
     "name": "Peach Tycoon",
-    "description": "Premium Palisade peaches shipped directly from Colorado orchards.",
+    "description": "Seasonal Palisade peach drops. Season 4 is sold out; come back next season for the next harvest.",
     "location": "Palisade, Colorado, USA",
     "website": "https://peachtycoon.com"
   },
@@ -20,7 +20,8 @@
   },
   "payment_protocol": {
     "name": "x402",
-    "purchase_endpoint": "https://peachtycoon.com/api/agent/purchase"
+    "purchase_endpoint": null,
+    "status": "disabled_until_next_season"
   },
   "discovery": {
     "products_endpoint": "https://peachtycoon.com/api/products"
@@ -29,11 +30,12 @@
     {
       "id": "0x82Db219d098b4EC1885161A9109A742660b480B2",
       "name": "Farmer's Dozen Peach Box",
-      "description": "13 premium Palisade peaches harvested at peak ripeness.",
+      "description": "Season 4 is sold out. Come back next season for the next Palisade peach drop.",
       "redeemable_for": "13 Palisade peaches",
       "harvest_window": "August 2026",
       "shipping_region": "United States",
       "token_type": "erc721",
+      "availability_status": "sold_out",
       "restrictions": {
         "age_restricted": false,
         "human_redeemer_required": true

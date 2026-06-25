@@ -4,12 +4,7 @@ import { usePrivy, useFundWallet } from "@privy-io/react-auth";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { getContracts } from "@/lib/contracts";
 import { TARGET_NETWORK } from "@/lib/constants";
-
-function shortenAddress(address: string) {
-  return `${address.slice(0, 6)}...${address.slice(-4)}`;
-}
 
 export default function AccountPage() {
   const { ready, authenticated, user, logout } = usePrivy();
@@ -33,7 +28,6 @@ export default function AccountPage() {
   const walletAddress = user.wallet?.address || "";
   const email = user.email?.address || "";
   const network = TARGET_NETWORK;
-  const { nft: contractAddress } = getContracts();
 
   const basescanWalletUrl =
     network === "mainnet"

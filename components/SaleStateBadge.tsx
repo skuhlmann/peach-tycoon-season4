@@ -13,7 +13,7 @@ export default function SaleStateBadge() {
       color: "bg-brand-green text-brand-black",
     },
     closed: {
-      label: "• SALE CLOSED •",
+      label: "• SOLD OUT •",
       color: "bg-brand-red text-brand-black",
     },
   }[state];

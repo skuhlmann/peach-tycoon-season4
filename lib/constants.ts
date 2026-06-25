@@ -4,7 +4,7 @@ export type SaleState = "upcoming" | "ongoing" | "closed";
 
 // Sale state — managed here since mintOpen is private on-chain.
 // Set to "upcoming" before launch, "ongoing" when minting opens, "closed" when sold out or ended.
-export const SALE_STATE: SaleState = "ongoing";
+export const SALE_STATE: SaleState = "closed";
 
 // Sale dates — used for countdown timer (upcoming) and display only.
 // These are informational; the contract enforces actual mint availability.

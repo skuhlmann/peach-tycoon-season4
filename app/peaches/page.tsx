@@ -1,9 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
 import { usePrivy } from "@privy-io/react-auth";
-import { useReadContract } from "wagmi";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -198,14 +196,7 @@ function NFTCard({
           </div>
         )}
 
-        {/* Sell on market (placeholder) */}
         <div className="flex gap-3 mt-3">
-          <Link href="/market">
-            <Button variant="brand-blue" size="xs">
-              Sell at the Market
-            </Button>
-          </Link>
-
           {/* Gift */}
           {!isRedeemed && (
             <Button
@@ -252,7 +243,7 @@ export default function PeachesPage() {
 
   console.log("nfts", nfts);
 
-  const fetchNFTs = async () => {
+  const fetchNFTs = useCallback(async () => {
     if (!walletAddress) return;
     setLoading(true);
     setError("");
@@ -264,9 +255,9 @@ export default function PeachesPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [walletAddress]);
 
-  const checkEmail = async () => {
+  const checkEmail = useCallback(async () => {
     if (!walletAddress) return;
     try {
       const res = await fetch(`/api/contacts?wallet=${walletAddress}`);
@@ -275,14 +266,14 @@ export default function PeachesPage() {
     } catch {
       setHasEmail(true); // don't show prompt if check fails
     }
-  };
+  }, [walletAddress]);
 
   useEffect(() => {
     if (authenticated && walletAddress) {
       fetchNFTs();
       checkEmail();
     }
-  }, [authenticated, walletAddress]);
+  }, [authenticated, walletAddress, fetchNFTs, checkEmail]);
 
   if (!ready) {
     return (
@@ -354,13 +345,8 @@ export default function PeachesPage() {
       {!loading && !error && nfts.length === 0 && (
         <div className="flex flex-col gap-6 items-start">
           <p className="font-sans text-brand-white/70 text-lg">
-            You don&apos;t have any Peach Box Tokens yet.
+            No Season 4 Peach Box Tokens were found for this wallet.
           </p>
-          <Link href="/buy">
-            <Button variant="brand-orange" size="lg">
-              GET YOUR PEACHES
-            </Button>
-          </Link>
         </div>
       )}
 
